@@ -17,7 +17,7 @@ import registrationRoute from "./routes/registrationRoute.js";
 const app = express();
 
 // Cross origin requests
-app.use(cors({ credentials: true }));
+app.use(cors());
 
 // Express body parser
 app.use(express.json({ limit: "50mb" }));

@@ -17,6 +17,16 @@ const sendEmailToAdmin = asyncHandler(async (req, res) => {
 	try {
 		const { name, email, phoneNumber, message } = req.body;
 
+		if (!name || !email || !phoneNumber) {
+			res.status(400);
+			throw new Error("Please enter all fields!");
+		}
+
+		if (phoneNumber.length != 11 || phoneNumber.charAt(0) !== "0") {
+			res.status(400);
+			throw new Error("Invalid phone number!");
+		}
+
 		// Admin email format
 		const request = mailjet.post("send", { version: "v3.1" }).request({
 			Messages: [
@@ -27,46 +37,47 @@ const sendEmailToAdmin = asyncHandler(async (req, res) => {
 					},
 					To: [
 						{
-							Email: `innovation@gmail.com`,
+							Email: `tomiwaadelae6@gmail.com`,
 							Name: `Innovation 3.0`,
 						},
 					],
-					Subject: `Contact form submission - ${name}`,
-					TextPart: `New Contact Form Submission - Innovation 3.0`,
+					Subject: `Notification: Contact Form Submission Received`,
+					TextPart: `Notification: Contact Form Submission Received`,
 					HTMLPart: `<div 
                                     style="
                                         font-family: Montserrat, sans-serif;
                                         font-size: 15px;
                                     "
                                 >
-                                    <h1>Dear Innovation 3.0 team,</h1>
+                                    <h1>Dear John Ogunjide,</h1>
                                     <p>
-                                        Exciting news! A new contact form submission has been successfully received via our website.
+									I hope this email finds you well. I wanted to inform you that we have received a new submission via the contact page of our website.
                                     </p>
                                     <p>
-                                        The details are as follows:
+                                        Here are the Details provided:
                                     </p>
                                     <ul>
                                         <li>
-                                            Name of Sender: ${name}
+                                            <strong>Name:</strong> ${name}
                                         </li>
                                         <li>
-                                            Email Address: ${email}
+                                            <strong>Email Address:</strong> ${email}
                                         </li>
                                         <li>
-                                            Phone number: ${phoneNumber}
+                                            <strong>Phone number:</strong> ${phoneNumber}
                                         </li>
                                         <li>
-                                            Message: ${message}
+                                            <strong>Message:</strong> ${message}
                                         </li>
                                     </ul>
+									<p>It's always encouraging to see interest and engagement from our audience, and I wanted to ensure you were aware of this interaction.</p>
                                     <p>
-                                        Thank you for your attention to this matter. Your commitment to student satisfaction is truly appreciated
+                                        Thank you for your attention to this matter. Your commitment to student's satisfaction is truly appreciated
                                     </p>
                                     <p>
                                         Best regards,
                                     </p>
-                                    <p>Innovation</p>
+                                    <p>Innovation 3.0</p>
                                 </div>
                         `,
 				},
@@ -76,7 +87,10 @@ const sendEmailToAdmin = asyncHandler(async (req, res) => {
 		// Send email to admin
 		request
 			.then(() => {
-				res.status(201).json({ msg: "Email sent successfully!" });
+				res.status(201).json({
+					success:
+						"Email sent successfully! Our team would get back to you shortly",
+				});
 				return;
 			})
 			.catch((err) => {
