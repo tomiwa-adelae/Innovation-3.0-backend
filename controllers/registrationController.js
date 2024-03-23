@@ -64,7 +64,7 @@ const registerUser = asyncHandler(async (req, res) => {
                                 >
                                     <h3>Dear ${name},</h3>
                                     <p>
-										Congratulations! We are thrilled to inform you that your registration for the Innovation 3.0 Conference has been successfully confirmed. We are excited to have you join us for this dynamic event where cutting-edge ideas, groundbreaking technologies, and innovative strategies will be explored.
+										Congratulations! We are thrilled to inform you that your registration for Innovation 3.0 has been successfully confirmed. We are excited to have you join us for this dynamic event where cutting-edge ideas, groundbreaking technologies, and innovative strategies will be explored.
                                     </p>
                                     <strong>
                                         Event Details:
@@ -85,19 +85,19 @@ const registerUser = asyncHandler(async (req, res) => {
                                     </ul>
 									<strong>What to Expect:</strong>
 									<p>
-										At the Innovation 3.0, you will have the opportunity to engage with industry leaders, visionary speakers, and fellow innovators who are at the forefront of shaping the future. From keynote presentations to interactive workshops and networking sessions, the conference promises to inspire, educate, and empower attendees to drive innovation in their respective fields.
+										At Innovation 3.0, you will have the opportunity to engage with industry leaders, visionary speakers, and fellow innovators who are at the forefront of shaping the future. From keynote presentations to interactive workshops and networking sessions, the conference promises to inspire, educate, and empower attendees to drive innovation in their respective fields.
 									</p>
 									<strong>Additional Information:</strong>
                                     <ul>
 										<li>
-											Please remember to [bring any necessary materials / download the conference app / familiarize yourself with the virtual platform] in advance to ensure a smooth and enjoyable experience.
+											Please remember to [bring any necessary materials / familiarize yourself with the virtual platform] in advance to ensure a smooth and enjoyable experience.
 										</li>
 										<li>
 											Keep an eye on your inbox for any updates or important announcements leading up to the event.
 										</li>
 									</ul>
 									<p>
-										Once again, thank you for registering for the Innovation 3.0 Conference. We look forward to welcoming you and experiencing the future of innovation together.
+										Once again, thank you for registering for Innovation 3.0. We look forward to welcoming you and experiencing the future of innovation together.
 									</p>
                                     <p>
                                         Best regards,
@@ -156,7 +156,7 @@ const registerUser = asyncHandler(async (req, res) => {
                                         </li>
                                     </ul>
 									<p>
-									We are excited to have ${name} join us for this innovative event. As the convener of the Innovation 3.0, we thought you would like to be informed of the latest registrations.
+									We are excited to have <strong>${name}</strong> join us for this innovative event. As the convener of the Innovation 3.0, we thought you would like to be informed of the latest registrations.
 									</p>
 									
 									<p>
