@@ -16,23 +16,47 @@ const mailjet = Mailjet.apiConnect(
 const registerUser = asyncHandler(async (req, res) => {
 	const { name, email, phoneNumber, address, expectations } = req.body;
 
-	// Registered User email format
-	const request = mailjet.post("send", { version: "v3.1" }).request({
-		Messages: [
-			{
-				From: {
-					Email: "webmasterthetommedia@gmail.com",
-					Name: "Innovation 3.0",
-				},
-				To: [
-					{
-						Email: `${email}`,
-						Name: `Innovation 3.0`,
+	if (!name || !email || !phoneNumber || !address || !expectations) {
+		res.status(400);
+		throw new Error("Please enter all fields!");
+	}
+
+	if (phoneNumber.length != 11 || phoneNumber.charAt(0) !== "0") {
+		res.status(400);
+		throw new Error("Invalid phone number!");
+	}
+
+	const userExist = await User.findOne({ email });
+	if (userExist) {
+		res.status(400);
+		throw new Error("You have once registered for Innovation 3.0!");
+	}
+
+	const user = await User.create({
+		name,
+		email,
+		phoneNumber,
+		address,
+		expectations,
+	});
+	if (user) {
+		// Registered User email format
+		const request = mailjet.post("send", { version: "v3.1" }).request({
+			Messages: [
+				{
+					From: {
+						Email: "webmasterthetommedia@gmail.com",
+						Name: "Innovation 3.0",
 					},
-				],
-				Subject: `Confirmation: Registration for Innovation 3.0`,
-				TextPart: `Confirmation: Registration for Innovation 3.0`,
-				HTMLPart: `<div 
+					To: [
+						{
+							Email: `${email}`,
+							Name: `Innovation 3.0`,
+						},
+					],
+					Subject: `Confirmation: Registration for Innovation 3.0`,
+					TextPart: `Confirmation: Registration for Innovation 3.0`,
+					HTMLPart: `<div 
                                     style="
                                         font-family: Montserrat, sans-serif;
                                         font-size: 15px;
@@ -84,27 +108,27 @@ const registerUser = asyncHandler(async (req, res) => {
                                     <p>ogunjidejohn@gmail.com</p>
                                 </div>
                         `,
-			},
-		],
-	});
-
-	// Admin email format
-	const requestAdmin = mailjet.post("send", { version: "v3.1" }).request({
-		Messages: [
-			{
-				From: {
-					Email: "webmasterthetommedia@gmail.com",
-					Name: "Innovation 3.0",
 				},
-				To: [
-					{
-						Email: `tomiwaadelae6@gmail.com`,
-						Name: `Innovation 3.0`,
+			],
+		});
+
+		// Admin email format
+		const requestAdmin = mailjet.post("send", { version: "v3.1" }).request({
+			Messages: [
+				{
+					From: {
+						Email: "webmasterthetommedia@gmail.com",
+						Name: "Innovation 3.0",
 					},
-				],
-				Subject: `Notification of Successful Registration for Innovation 3.0`,
-				TextPart: `Notification of Successful Registration for Innovation 3.0`,
-				HTMLPart: `<div 
+					To: [
+						{
+							Email: `tomiwaadelae6@gmail.com`,
+							Name: `Innovation 3.0`,
+						},
+					],
+					Subject: `Notification of Successful Registration for Innovation 3.0`,
+					TextPart: `Notification of Successful Registration for Innovation 3.0`,
+					HTMLPart: `<div 
                                     style="
                                         font-family: Montserrat, sans-serif;
                                         font-size: 15px;
@@ -144,34 +168,10 @@ const registerUser = asyncHandler(async (req, res) => {
                                     <p>Innovation 3.0</p>
                                 </div>
                         `,
-			},
-		],
-	});
+				},
+			],
+		});
 
-	if (!name || !email || !phoneNumber || !address || !expectations) {
-		res.status(400);
-		throw new Error("Please enter all fields!");
-	}
-
-	if (phoneNumber.length != 11 || phoneNumber.charAt(0) !== "0") {
-		res.status(400);
-		throw new Error("Invalid phone number!");
-	}
-
-	const userExist = await User.findOne({ email });
-	if (userExist) {
-		res.status(400);
-		throw new Error("You have once registered for Innovation 3.0!");
-	}
-
-	const user = await User.create({
-		name,
-		email,
-		phoneNumber,
-		address,
-		expectations,
-	});
-	if (user) {
 		// Send email to user
 		request
 			.then(() => {
