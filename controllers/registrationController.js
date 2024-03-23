@@ -21,7 +21,7 @@ const registerUser = asyncHandler(async (req, res) => {
 		Messages: [
 			{
 				From: {
-					Email: "thetommedia@gmail.com",
+					Email: "webmasterthetommedia@gmail.com",
 					Name: "Innovation 3.0",
 				},
 				To: [
@@ -93,7 +93,7 @@ const registerUser = asyncHandler(async (req, res) => {
 		Messages: [
 			{
 				From: {
-					Email: "thetommedia@gmail.com",
+					Email: "webmasterthetommedia@gmail.com",
 					Name: "Innovation 3.0",
 				},
 				To: [
