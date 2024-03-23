@@ -33,7 +33,7 @@ const sendEmailToAdmin = asyncHandler(async (req, res) => {
 				{
 					From: {
 						Email: "thetommedia@gmail.com",
-						Name: "Webmaster - Innovation 3.0",
+						Name: "Innovation 3.0",
 					},
 					To: [
 						{
