@@ -122,7 +122,7 @@ const registerUser = asyncHandler(async (req, res) => {
 					},
 					To: [
 						{
-							Email: `tomiwaadelae6@gmail.com`,
+							Email: `ogunjidejohn@gmail.com`,
 							Name: `Innovation 3.0`,
 						},
 					],
