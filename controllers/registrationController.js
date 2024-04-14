@@ -77,7 +77,7 @@ const registerUser = asyncHandler(async (req, res) => {
                                             <strong>Date:</strong> 17th of May, 2024
                                         </li>
                                         <li>
-                                            <strong>Time:</strong> 9:00am - 2:00pm
+                                            <strong>Time:</strong> 9:00am
                                         </li>
                                         <li>
                                             <strong>Location:</strong> Alakija Law Faculty Auditorium, Ajayi Crowther University, Oyo State
