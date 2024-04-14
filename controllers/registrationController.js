@@ -74,7 +74,7 @@ const registerUser = asyncHandler(async (req, res) => {
                                             <strong>Conference name:</strong> Innovation 3.0
                                         </li>
                                         <li>
-                                            <strong>Date:</strong> 10th of May, 2024
+                                            <strong>Date:</strong> 17th of May, 2024
                                         </li>
                                         <li>
                                             <strong>Time:</strong> 9:00am - 2:00pm
