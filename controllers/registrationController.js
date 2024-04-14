@@ -105,7 +105,7 @@ const registerUser = asyncHandler(async (req, res) => {
                                     <p>John Ogunjide</p>
                                     <p>Convener of Innovation 3.0</p>
                                     <p>Innovation 3.0 & Cornerstone Foundations</p>
-                                    <p>ogunjidejohn@gmail.com</p>
+                                    <p>cornerstonefoundations@gmail.com</p>
                                 </div>
                         `,
 				},
@@ -122,7 +122,7 @@ const registerUser = asyncHandler(async (req, res) => {
 					},
 					To: [
 						{
-							Email: `ogunjidejohn@gmail.com`,
+							Email: `cornerstonefoundations@gmail.com`,
 							Name: `Innovation 3.0`,
 						},
 					],
@@ -134,7 +134,7 @@ const registerUser = asyncHandler(async (req, res) => {
                                         font-size: 15px;
                                     "
                                 >
-                                    <h3>Dear John Ogunjide,</h3>
+                                    <h3>Dear Innovation Team,</h3>
                                     <p>
 									I hope this email finds you well. I am writing to inform you that we have received a new registration for the upcoming Innovation 3.0.
                                     </p>
@@ -166,6 +166,7 @@ const registerUser = asyncHandler(async (req, res) => {
                                         Best regards,
                                     </p>
                                     <p>Innovation 3.0</p>
+                                    <p>Cornerstone International Foundations</p>
                                 </div>
                         `,
 				},

@@ -37,7 +37,7 @@ const sendEmailToAdmin = asyncHandler(async (req, res) => {
 					},
 					To: [
 						{
-							Email: `tomiwaadelae6@gmail.com`,
+							Email: `cornerstonefoundations@gmail.com`,
 							Name: `Innovation 3.0`,
 						},
 					],
@@ -49,7 +49,7 @@ const sendEmailToAdmin = asyncHandler(async (req, res) => {
                                         font-size: 15px;
                                     "
                                 >
-                                    <h1>Dear John Ogunjide,</h1>
+                                    <h1>Dear Innovation Team,</h1>
                                     <p>
 									I hope this email finds you well. I wanted to inform you that we have received a new submission via the contact page of our website.
                                     </p>
@@ -78,6 +78,7 @@ const sendEmailToAdmin = asyncHandler(async (req, res) => {
                                         Best regards,
                                     </p>
                                     <p>Innovation 3.0</p>
+                                    <p>Cornerstone International Foundations</p>
                                 </div>
                         `,
 				},
