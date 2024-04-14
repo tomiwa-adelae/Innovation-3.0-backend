@@ -32,7 +32,7 @@ app.use("/api/contact", contactRoute);
 app.use("/api/register", registrationRoute);
 
 app.get("/", (req, res) => {
-	res.send("Yes");
+	res.send("Yes! I'm back up");
 });
 
 // Error middleware
