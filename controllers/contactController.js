@@ -37,7 +37,7 @@ const sendEmailToAdmin = asyncHandler(async (req, res) => {
 					},
 					To: [
 						{
-							Email: `cornerstonefoundations@gmail.com`,
+							Email: `cornerstonefountains@gmail.com`,
 							Name: `Innovation 3.0`,
 						},
 					],
