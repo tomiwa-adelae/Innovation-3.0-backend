@@ -105,7 +105,7 @@ const registerUser = asyncHandler(async (req, res) => {
                                     <p>John Ogunjide</p>
                                     <p>Convener of Innovation 3.0</p>
                                     <p>Innovation 3.0 & Cornerstone Foundations</p>
-                                    <p>cornerstonefoundations@gmail.com</p>
+                                    <p>cornerstonefountains@gmail.com</p>
                                 </div>
                         `,
 				},
@@ -122,7 +122,7 @@ const registerUser = asyncHandler(async (req, res) => {
 					},
 					To: [
 						{
-							Email: `cornerstonefoundations@gmail.com`,
+							Email: `cornerstonefountains@gmail.com`,
 							Name: `Innovation 3.0`,
 						},
 					],
