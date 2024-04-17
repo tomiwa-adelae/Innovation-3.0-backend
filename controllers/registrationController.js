@@ -16,7 +16,14 @@ const mailjet = Mailjet.apiConnect(
 const registerUser = asyncHandler(async (req, res) => {
 	const { name, email, phoneNumber, address, expectations } = req.body;
 
-	if (!name || !email || !phoneNumber || !address || !expectations) {
+	if (
+		!name ||
+		!email ||
+		!phoneNumber ||
+		!institution ||
+		!address ||
+		!expectations
+	) {
 		res.status(400);
 		throw new Error("Please enter all fields!");
 	}
@@ -38,6 +45,7 @@ const registerUser = asyncHandler(async (req, res) => {
 		phoneNumber,
 		address,
 		expectations,
+		institution,
 	});
 	if (user) {
 		// Registered User email format
@@ -150,6 +158,12 @@ const registerUser = asyncHandler(async (req, res) => {
                                         </li>
                                         <li>
                                             <strong>Phone number:</strong> ${phoneNumber}
+                                        </li>
+                                        <li>
+                                            <strong>Institution:</strong> ${institution}
+                                        </li>
+                                        <li>
+                                            <strong>Address:</strong> ${address}
                                         </li>
                                         <li>
                                            <strong>Expectations:</strong> ${expectations}

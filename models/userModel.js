@@ -19,6 +19,10 @@ const userSchema = new mongoose.Schema(
 			type: String,
 			required: true,
 		},
+		institution: {
+			type: String,
+			required: true,
+		},
 		expectations: {
 			type: String,
 			required: true,
