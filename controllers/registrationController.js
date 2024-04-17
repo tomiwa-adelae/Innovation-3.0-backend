@@ -14,7 +14,8 @@ const mailjet = Mailjet.apiConnect(
 // @route POST /api/users
 // @access public
 const registerUser = asyncHandler(async (req, res) => {
-	const { name, email, phoneNumber, address, expectations } = req.body;
+	const { name, email, phoneNumber, address, institution, expectations } =
+		req.body;
 
 	if (
 		!name ||
