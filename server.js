@@ -12,6 +12,7 @@ import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
 // Importing the routes
 import contactRoute from "./routes/contactRoute.js";
 import registrationRoute from "./routes/registrationRoute.js";
+import challengeRoute from "./routes/challengeRoute.js";
 
 // Initialize express app
 const app = express();
@@ -30,6 +31,7 @@ connectDB();
 
 app.use("/api/contact", contactRoute);
 app.use("/api/register", registrationRoute);
+app.use("/api/challenge", challengeRoute);
 
 app.get("/", (req, res) => {
 	res.send("Yes! I'm back up");
