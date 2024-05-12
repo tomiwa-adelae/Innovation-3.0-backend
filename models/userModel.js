@@ -8,24 +8,23 @@ const userSchema = new mongoose.Schema(
 		},
 		email: {
 			type: String,
-			required: true,
 			unique: true,
 		},
 		phoneNumber: {
 			type: String,
-			required: true,
 		},
 		address: {
 			type: String,
-			required: true,
 		},
 		institution: {
 			type: String,
-			required: true,
 		},
 		expectations: {
 			type: String,
-			required: true,
+		},
+		markAttendance: {
+			type: Boolean,
+			default: false,
 		},
 	},
 	{ timestamps: true }

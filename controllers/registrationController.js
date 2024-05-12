@@ -214,4 +214,50 @@ const registerUser = asyncHandler(async (req, res) => {
 	}
 });
 
-export { registerUser };
+// Desc Get all users/attendees
+// @route GET /api/users
+// @access public
+const getUsers = asyncHandler(async (req, res) => {
+	const keyword = req.query.keyword
+		? {
+				$or: [
+					{
+						name: {
+							$regex: req.query.keyword,
+							$options: "i",
+						},
+					},
+					{
+						email: {
+							$regex: req.query.keyword,
+							$options: "i",
+						},
+					},
+				],
+		  }
+		: {};
+
+	const users = await User.find({ ...keyword }).sort({ createdAt: -1 });
+	// .limit(10);
+
+	res.status(200).json(users);
+});
+
+const markAsAttended = asyncHandler(async (req, res) => {
+	const { id } = req.body;
+
+	const user = await User.findById(id);
+
+	if (user) {
+		user.markAttendance = true;
+
+		await user.save();
+
+		res.status(200).json({ success: "Attendance marked!" });
+	} else {
+		res.status(400);
+		throw new Error("Internal server error!");
+	}
+});
+
+export { registerUser, getUsers, markAsAttended };

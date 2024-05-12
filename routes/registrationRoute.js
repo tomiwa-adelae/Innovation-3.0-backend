@@ -1,8 +1,13 @@
 import express from "express";
-import { registerUser } from "../controllers/registrationController.js";
+import {
+	registerUser,
+	getUsers,
+	markAsAttended,
+} from "../controllers/registrationController.js";
 
 const router = express.Router();
 
-router.route("/").post(registerUser);
+router.route("/").post(registerUser).get(getUsers);
+router.route("/mark-attended").post(markAsAttended);
 
 export default router;
