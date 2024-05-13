@@ -3,6 +3,7 @@ dotenv.config();
 
 import Mailjet from "node-mailjet";
 import asyncHandler from "express-async-handler";
+import { v4 as uuidv4 } from "uuid";
 import User from "../models/userModel.js";
 
 const mailjet = Mailjet.apiConnect(
@@ -214,9 +215,45 @@ const registerUser = asyncHandler(async (req, res) => {
 	}
 });
 
+// Desc Register new user
+// @route POST /api/register/create
+// @access public
+const adminRegisterUser = asyncHandler(async (req, res) => {
+	const {
+		name,
+		email,
+		phoneNumber,
+		address,
+		institution,
+		expectations,
+		markAttendance,
+	} = req.body;
+
+	if (!name) {
+		res.status(400);
+		throw new Error("Please enter all fields!");
+	}
+
+	const user = await User.create({
+		name,
+		email: email || uuidv4(),
+		phoneNumber,
+		address,
+		expectations,
+		institution,
+		markAttendance,
+	});
+	if (user) {
+		res.status(200).json({ success: "Success! Registration successful." });
+	} else {
+		res.status(401);
+		throw new Error("An error occurred! Please try again later");
+	}
+});
+
 // Desc Get all users/attendees
 // @route GET /api/users
-// @access public
+// @access Private
 const getUsers = asyncHandler(async (req, res) => {
 	const keyword = req.query.keyword
 		? {
@@ -260,4 +297,4 @@ const markAsAttended = asyncHandler(async (req, res) => {
 	}
 });
 
-export { registerUser, getUsers, markAsAttended };
+export { registerUser, getUsers, markAsAttended, adminRegisterUser };
