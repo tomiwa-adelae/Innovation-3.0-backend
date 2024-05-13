@@ -3,6 +3,8 @@ dotenv.config();
 
 import Mailjet from "node-mailjet";
 import asyncHandler from "express-async-handler";
+import { v4 as uuidv4 } from "uuid";
+
 import ChallengeUser from "../models/challengeModel.js";
 
 const mailjet = Mailjet.apiConnect(
@@ -214,4 +216,93 @@ const challengeUser = asyncHandler(async (req, res) => {
 	}
 });
 
-export { challengeUser };
+// Desc Get all users/attendees
+// @route GET /api/users
+// @access Private
+const getChallengers = asyncHandler(async (req, res) => {
+	const keyword = req.query.keyword
+		? {
+				$or: [
+					{
+						name: {
+							$regex: req.query.keyword,
+							$options: "i",
+						},
+					},
+					{
+						email: {
+							$regex: req.query.keyword,
+							$options: "i",
+						},
+					},
+				],
+		  }
+		: {};
+
+	const users = await ChallengeUser.find({ ...keyword }).sort({
+		createdAt: -1,
+	});
+	// .limit(10);
+
+	res.status(200).json(users);
+});
+
+const markAsChallenged = asyncHandler(async (req, res) => {
+	const { id } = req.body;
+
+	const user = await ChallengeUser.findById(id);
+
+	if (user) {
+		user.markChallenged = true;
+
+		await user.save();
+
+		res.status(200).json({ success: "Challenged!" });
+	} else {
+		res.status(400);
+		throw new Error("Internal server error!");
+	}
+});
+
+// Desc Register new challenge user
+// @route POST /api/chalenge/create
+// @access public
+const adminRegisterChallengeUser = asyncHandler(async (req, res) => {
+	const {
+		name,
+		email,
+		phoneNumber,
+		address,
+		category,
+		presentationType,
+		markAttendance,
+	} = req.body;
+
+	if (!name || !category || !presentationType) {
+		res.status(400);
+		throw new Error("Please enter all fields!");
+	}
+
+	const user = await ChallengeUser.create({
+		name,
+		email: email || uuidv4(),
+		phoneNumber,
+		category,
+		address,
+		presentationType,
+		markAttendance,
+	});
+	if (user) {
+		res.status(200).json({ success: "Success! Registration successful." });
+	} else {
+		res.status(401);
+		throw new Error("An error occurred! Please try again later");
+	}
+});
+
+export {
+	challengeUser,
+	getChallengers,
+	markAsChallenged,
+	adminRegisterChallengeUser,
+};

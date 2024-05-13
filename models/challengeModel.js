@@ -13,11 +13,9 @@ const challengeUserSchema = new mongoose.Schema(
 		},
 		phoneNumber: {
 			type: String,
-			required: true,
 		},
 		address: {
 			type: String,
-			required: true,
 		},
 		category: {
 			type: String,
@@ -26,6 +24,10 @@ const challengeUserSchema = new mongoose.Schema(
 		presentationType: {
 			type: String,
 			required: true,
+		},
+		markChallenged: {
+			type: Boolean,
+			default: false,
 		},
 	},
 	{ timestamps: true }
